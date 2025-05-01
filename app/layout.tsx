@@ -6,8 +6,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "Happy Birthday, My Love",
-  description: "A special birthday celebration for the love of my life",
+  title: "Happy Birthday, Cantikkkuuu",
+  description: "A special birthday celebration for my ayang riska anggraini",
     generator: 'Faizmuhiq'
 }
 
