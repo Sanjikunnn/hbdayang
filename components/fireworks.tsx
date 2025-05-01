@@ -205,7 +205,7 @@ const explodeFirework = (firework: Firework) => {
         className="absolute inset-0 w-full h-full pointer-events-none z-10"
         style={{ background: "transparent" }}
       />
-      <div className="absolute top-1/4 w-full text-center z-20 animate-fade-in-up">
+      <div className="absolute top-1/3 w-full text-center z-20 animate-fade-in-up">
         <h1 className="text-3xl md:text-5xl font-bold text-white drop-shadow-lg">
           SELAMAT ULANG TAHUN<br />
           <span className="text-rose-300">RISKA ANGGRAINI</span><br />

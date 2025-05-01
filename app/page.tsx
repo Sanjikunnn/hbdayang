@@ -218,10 +218,10 @@ export default function BirthdayPage() {
   const sections = [
     {
       id: "greeting",
-      title: "Halooo, Riska Anggraini 💗",
+      title: "Selamat Datang di Website Spesial Setahun Sekali!",
       content:
-        "Waktu berjalan begitu cepat, tapi rasa sayang ini tak pernah terburu-buru. Hari ini kamu bertambah usia, dan aku bersyukur bisa menyaksikannya, lagi dan lagi hingga seterusnya.",
-    },
+        "Hari ini bukan hari biasa, karena seseorang yang luar biasa sedang merayakan ulang tahunnya. Terima kasih sudah mampir ke tempat kecil ini yang dibuat dengan penuh cinta, untuk merayakan momen yang begitu berarti.",
+    },    
     {
       id: "memories",
       title: "Jejak Cerita Kita",
@@ -440,7 +440,7 @@ export default function BirthdayPage() {
       )}
 
       {/* Navigation indicator */}
-      <div className="fixed left-6 top-1/2 -translate-y-1/2 flex flex-col gap-2">
+      <div className="fixed left-3 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-50">
         {sections.map((_, index) => (
           <button
             key={index}
@@ -454,7 +454,7 @@ export default function BirthdayPage() {
       </div>
 
       {/* Main content */}
-      <div className="w-full max-w-6xl min-h-screen flex items-center justify-center px-6">
+      <div className="w-full max-w-6xl min-h-screen flex items-center justify-center text-justify px-4">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSection}
@@ -477,7 +477,7 @@ export default function BirthdayPage() {
             )}
 
             {currentSection === 1 && (
-              <div className="grid grid-cols-2 gap-4 mb-8 text-justify">
+              <div className="grid grid-cols-2 gap-2 mb-8 text-justify">
                 <Image
                   src="/memories/IMG-20250501-WA0009.jpg?height=200&width=200"
                   width={200}
@@ -500,7 +500,7 @@ export default function BirthdayPage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ staggerChildren: 0.1, delayChildren: 0.3 }}
-                className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8"
+                className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8 text-justify"
               >
                 {memoryPhotos.map((memory, i) => (
                   <motion.div
@@ -570,17 +570,17 @@ export default function BirthdayPage() {
               <div className="w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-pink-300 via-pink-200 to-pink-100" />
             </div>
 
-            <div className="z-10 text-center px-4 py-8">
-              <h3 className="text-xl font-bold text-rose-600 mb-1">Untukmu yang Teristimewa</h3>
-              <h4 className="text-2xl font-bold text-rose-600 mb-4">Riska Anggraini</h4>
+            <div className="z-10 text-justify px-1 py-8">
+              <h3 className="text-xl font-bold text-rose-600 mb-1 text-center">Untukmu yang Teristimewa</h3>
+              <h4 className="text-2xl font-bold text-rose-600 mb-4 text-center">Riska Anggraini</h4>
               <p className="text-rose-800 mb-6 leading-relaxed">
                 Setiap detik yang kita lewati bersama adalah anugerah terindah. Cintamu, perhatianmu, dan cara kau membuat setiap hari menjadi lebih berarti, semuanya adalah keajaiban yang aku syukuri setiap saat. Aku tak pernah merasa seutuhnya hidup hingga aku memilikimu di sisi.
               </p>
               <p className="text-rose-800 mb-6 leading-relaxed">
                 Di hari ulang tahunmu ini, izinkan aku mengucapkan betapa besar rasa terima kasihku atas segala yang telah kau beri. Semoga kebahagiaanmu selalu mekar seperti bunga yang tak pernah layu, dan cinta kita semakin kokoh, tak tergoyahkan oleh waktu.
               </p>
-              <p className="text-rose-600 font-bold">Pria dengan penuh cinta,</p>
-              <p className="italic text-rose-500">Faizal Muhamad Iqbal</p>
+              <p className="text-rose-600 font-bold text-center">Pria dengan penuh cinta,</p>
+              <p className="italic text-rose-500 text-center">Faizal Muhamad Iqbal</p>
             </div>
 
 
@@ -605,7 +605,7 @@ export default function BirthdayPage() {
 
             {currentSection === 4 && (
               <div className="mb-8">
-                <div className="relative overflow-hidden rounded-xl border-2 border-pink-200 shadow-lg aspect-video">
+                <div className="relative overflow-hidden h-[270px] w-full rounded-xl border-2 border-pink-200 shadow-lg aspect-video">
                   {/* Slideshow */}
                   <div className="relative w-full h-full">
                     <AnimatePresence mode="wait">
@@ -623,8 +623,8 @@ export default function BirthdayPage() {
                           fill
                           className="object-cover"
                         />
-                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-white">
-                          <p className="text-center font-medium">{slideshowImages[currentSlide].caption}</p>
+                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-0 text-white">
+                          <p className="text-center font-sm">{slideshowImages[currentSlide].caption}</p>
                         </div>
                       </motion.div>
                     </AnimatePresence>
@@ -632,14 +632,14 @@ export default function BirthdayPage() {
                     {/* Navigation arrows */}
                     <button
                       onClick={prevSlide}
-                      className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/30 backdrop-blur-sm text-white hover:bg-white/50 transition-all"
+                      className="absolute left-0 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/30 backdrop-blur-l text-white hover:bg-white/50 transition-all"
                       aria-label="Previous slide"
                     >
                       <ChevronLeft size={20} />
                     </button>
                     <button
                       onClick={nextSlide}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/30 backdrop-blur-sm text-white hover:bg-white/50 transition-all"
+                      className="absolute right-0 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/30 backdrop-blur-l text-white hover:bg-white/50 transition-all"
                       aria-label="Next slide"
                     >
                       <ChevronRight size={20} />
@@ -687,7 +687,7 @@ export default function BirthdayPage() {
               <span className="block h-3 bg-pink-200/50 absolute bottom-1 left-0 right-0 z-0 transform -rotate-1"></span>
             </h2>
 
-            <div className="mt-8 text-lg text-center leading-relaxed">{sections[currentSection].content}</div>
+            <div className="mt-8 text-lg text-justify leading-relaxed">{sections[currentSection].content}</div>
 
             {currentSection === sections.length - 1 && (
               <div className="mt-8 flex flex-col items-center gap-4">
