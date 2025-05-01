@@ -477,7 +477,7 @@ export default function BirthdayPage() {
             )}
 
             {currentSection === 1 && (
-              <div className="grid grid-cols-2 gap-2 mb-8 text-justify">
+              <div className="grid grid-cols-2 gap-4 mb-8 text-justify">
                 <Image
                   src="/memories/IMG-20250501-WA0009.jpg?height=200&width=200"
                   width={200}
