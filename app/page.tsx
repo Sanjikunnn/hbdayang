@@ -24,9 +24,9 @@ import Fireworks from "@/components/fireworks"
 const HeartBeat3D = dynamic(() => import("@/components/heart-beat-3d"), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-64 flex items-center justify-center">
+    <div className="w-full h-full flex items-center justify-center">
       <Heart className="w-12 h-12 text-rose-500 animate-pulse" fill="currentColor" />
-      <span className="ml-2 text-rose-600">Loading heart...</span>
+      <span className="ml-2 text-rose-600">Loading bentar...</span>
     </div>
   ),
 })
@@ -42,83 +42,236 @@ export default function BirthdayPage() {
 
   const slideshowImages = [
     {
-      src: "/placeholder.svg?height=400&width=600&text=Our+First+Date",
+      src: "/memories/IMG-20250501-WA0008.jpg",
       alt: "Our First Date",
-      caption: "Where it all began - our first date at that cute café",
+      caption: "Di sinilah semua bermula — saat pertama kali kita saling menatap dan tahu bahwa ini bukan pertemuan biasa.",
     },
     {
-      src: "/placeholder.svg?height=400&width=600&text=Summer+Vacation",
+      src: "/memories/IMG-20250501-WA0005.jpg",
       alt: "Summer Vacation",
-      caption: "That amazing summer trip where we watched the sunset every evening",
+      caption: "Musim panas tak akan pernah sama sejak kau hadir di sisiku.",
     },
     {
-      src: "/placeholder.svg?height=400&width=600&text=Winter+Together",
+      src: "/memories/IMG-20250501-WA0006.jpg",
       alt: "Winter Together",
-      caption: "Keeping each other warm during our winter adventure",
+      caption: "Dalam dingin musim hujan, hangatnya cintamu jadi selimut terbaik.",
     },
     {
-      src: "/placeholder.svg?height=400&width=600&text=Birthday+Last+Year",
-      alt: "Birthday Last Year",
-      caption: "Celebrating your special day last year - look how far we've come!",
+      src: "/memories/IMG-20250501-WA0007.jpg",
+      alt: "Your Last Birthday",
+      caption: "Hari ulang tahunmu jadi pengingat betapa bersyukurnya aku memiliki kamu di dunia ini.",
     },
     {
-      src: "/placeholder.svg?height=400&width=600&text=Our+Favorite+Place",
+      src: "/memories/IMG-20250501-WA0009.jpg",
       alt: "Our Favorite Place",
-      caption: "The spot where we always feel at home together",
+      caption: "Bukan tentang tempatnya, tapi tentang siapa yang ada bersamaku di sana.",
     },
-  ]
-
+    {
+      src: "/memories/IMG-20250501-WA0010.jpg",
+      alt: "Morning Coffee",
+      caption: "Secangkir kopi dan tatapan matamu — cukup untuk menghangatkan seluruh hariku.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0011.jpg",
+      alt: "Candlelight Dinner",
+      caption: "Cahaya lilin tak pernah seindah saat memantul di matamu.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0012.jpg",
+      alt: "Rainy Day Together",
+      caption: "Hujan tak lagi kelabu jika kita berteduh di pelukan satu sama lain.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0013.jpg",
+      alt: "Long Walks",
+      caption: "Langkah demi langkah, aku ingin terus menyusuri hidup ini bersamamu.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0014.jpg",
+      alt: "Your Smile",
+      caption: "Senyummu adalah alasan kenapa aku selalu ingin pulang.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0015.jpg",
+      alt: "Picnic Moment",
+      caption: "Langit biru, angin sejuk, dan kamu — definisi bahagia yang sederhana.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0016.jpg",
+      alt: "Cooking Together",
+      caption: "Masakan kita mungkin sederhana, tapi cinta di dalamnya selalu luar biasa.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0017.jpg",
+      alt: "Movie Night",
+      caption: "Filmnya boleh apa aja, asalkan pelukannya tetap kamu.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0018.jpg",
+      alt: "Random Selfie",
+      caption: "Dalam semua candaan dan wajah lucu itu, aku menemukan kenyamanan yang tak terganti.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0019.jpg",
+      alt: "Sunset View",
+      caption: "Matahari tenggelam pun iri melihat betapa indahnya kamu saat tersenyum.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0020.jpg",
+      alt: "Surprise Gift",
+      caption: "Bukan soal hadiahnya, tapi perhatianmu yang selalu hangatkan hati.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0021.jpg",
+      alt: "Late Night Talks",
+      caption: "Obrolan larut malam kita adalah tempat di mana semua luka disembuhkan.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0022.jpg",
+      alt: "Holding Hands",
+      caption: "Genggaman ini — aku tak pernah ingin melepaskannya.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0023.jpg",
+      alt: "Hiking Adventure",
+      caption: "Mendaki bukit bersama, seperti menaklukkan rintangan hidup — selangkah demi selangkah, bersama.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0024.jpg",
+      alt: "Sleepy Face",
+      caption: "Bahkan dalam lelahmu, aku melihat kedamaian yang selalu kurindukan.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0025.jpg",
+      alt: "Beach Day",
+      caption: "Pasir di kaki kita, ombak di depan kita — dan kamu di sampingku.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0026.jpg",
+      alt: "Our Laugh",
+      caption: "Tawa kita, musik paling indah dalam hidupku.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0027.jpg",
+      alt: "Hug Moment",
+      caption: "Pelukanmu adalah rumah — tempat paling aman yang pernah kutemukan.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0028.jpg",
+      alt: "Just Us",
+      caption: "Tak butuh apa-apa lagi kalau sudah ada 'kita'.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0029.jpg",
+      alt: "Look Into Eyes",
+      caption: "Dalam matamu, aku melihat masa depan yang ingin kujaga selamanya.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0030.jpg",
+      alt: "Bicycle Ride",
+      caption: "Bersepeda bersamamu, seperti perjalanan cinta kita — sederhana tapi penuh tawa.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0031.jpg",
+      alt: "First Trip",
+      caption: "Perjalanan pertama kita, kenangan yang tak pernah pudar.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0032.jpg",
+      alt: "Matching Outfits",
+      caption: "Kita mungkin dua orang berbeda, tapi hati kita selalu seirama.",
+    },
+    {
+      src: "/memories/IMG-20250501-WA0005.jpg",
+      alt: "One More Kiss",
+      caption: "Satu ciuman lagi, dan aku jatuh cinta untuk kesekian kalinya padamu.",
+    },
+  ];
+  
+  const memoryPhotos = [
+    {
+      title: "Our first date",
+      image: "/memories/IMG-20250501-WA0008.jpg",
+    },
+    {
+      title: "Summer vacation",
+      image: "/memories/IMG-20250501-WA0016.jpg",
+    },
+    {
+      title: "Your birthday last year",
+      image: "/memories/IMG-20250501-WA0015.jpg",
+    },
+    {
+      title: "That perfect sunset",
+      image: "/memories/IMG-20250501-WA0005.jpg",
+    },
+    {
+      title: "When we laughed for hours",
+      image: "/memories/IMG-20250501-WA0022.jpg",
+    },
+    {
+      title: "The day I knew",
+      image: "/memories/IMG-20250501-WA0026.jpg",
+    },
+  ];
+  
   const sections = [
     {
       id: "greeting",
-      title: "Happy Birthday, My Love",
-      content: "On this special day, I want to celebrate the most amazing person in my life.",
+      title: "Halooo, Riska Anggraini 💗",
+      content:
+        "Waktu berjalan begitu cepat, tapi rasa sayang ini tak pernah terburu-buru. Hari ini kamu bertambah usia, dan aku bersyukur bisa menyaksikannya, lagi dan lagi hingga seterusnya.",
     },
     {
       id: "memories",
-      title: "Our Beautiful Memories",
-      content: "Each moment with you becomes a treasured memory I keep close to my heart.",
+      title: "Jejak Cerita Kita",
+      content:
+        "Bukan tentang seberapa sering kita bersama, tapi tentang seberapa dalam setiap pertemuan itu tinggal dalam ingatan.",
     },
     {
       id: "photo-gallery",
-      title: "Our Journey Together",
-      content: "Every photo tells a story of our love. Here are some of my favorite moments with you.",
+      title: "Foto, Tapi Penuh Rasa",
+      content:
+        "Foto mungkin diam, tapi perasaan yang tertangkap di dalamnya tetap hidup. Terima kasih sudah jadi bagian dari semua itu.",
     },
     {
       id: "digital-card",
-      title: "A Special Card For You",
-      content: "Click the card to open it and reveal a special message inside.",
+      title: "Sebuah Surat, Banyak Makna",
+      content:
+        "Sering kali, hal yang sederhana justru menyimpan ketulusan yang paling dalam. Bukalah kartu ini, karena ada sesuatu yang ingin kusampaikan—tulus, jujur, dan berasal dari hati",
     },
     {
       id: "slideshow",
-      title: "Our Story in Pictures",
-      content: "A journey through our most precious moments together.",
+      title: "Cerita Lewat Gambar",
+      content:
+        "Setiap potret punya cara sendiri untuk bercerita. Tapi semuanya mengarah ke satu hal: betapa berartinya kamu untukku.",
     },
     {
-      id: "3d-heart",
-      title: "My Heart Beats For You",
-      content: "Every beat of my heart belongs to you. Interact with the heart to see how you make it race.",
-    },
+      id: "3d-gift-box",
+      title: "Kejutan Dari Hati",
+      content:
+        "Cinta itu seperti hadiah yang tak selalu tampak sempurna, tapi selalu penuh makna. Seperti kotak kado ini, yang meski sederhana, menyimpan segala harapan dan kebahagiaan. Selamat ulang tahun, semoga tahun ini membawa lebih banyak kebahagiaan dan cinta di setiap langkah kita.",
+    },    
     {
       id: "message",
-      title: "A Letter From My Heart",
+      title: "Sepatah Kata Dari Aku",
       content:
-        "Words cannot express how much you mean to me. You've brought so much joy, laughter, and love into my life. Your smile brightens my darkest days, and your love gives me strength I never knew I had.",
+        "Kamu tidak sempurna, aku juga. Tapi aku percaya, kita bisa saling belajar dan tumbuh bareng. Terima kasih sudah bersama sejauh ini.",
     },
     {
       id: "wishes",
-      title: "My Wishes For You",
+      title: "Harapan Yang Tulus",
       content:
-        "I wish you endless happiness, health, success, and all the wonderful things you deserve in life. May all your dreams come true, and may we create countless more beautiful memories together.",
+        "Semoga langkahmu selalu ringan, hatimu selalu lapang, dan apa pun yang kamu impikan bisa satu per satu jadi nyata. Aku di sini, mendukung tanpa banyak suara.",
     },
     {
       id: "celebration",
-      title: "Let's Celebrate!",
+      title: "Bukan Tentang Pestanya",
       content:
-        "Today is all about you. I hope this little surprise brings a smile to your face. I love you more than words can say.",
+        "Hari ini bukan soal perayaan besar, tapi soal rasa yang besar. Semoga hari-hari kamu riang, dan senyum mu tak cepat hilang.",
     },
-  ]
-
+  ];
+  
   // Slideshow auto-advance
   useEffect(() => {
     let slideshowTimer: NodeJS.Timeout | null = null
@@ -148,25 +301,39 @@ export default function BirthdayPage() {
   useEffect(() => {
     // Show fireworks when on the celebration section
     setShowFireworks(currentSection === sections.length - 1)
-
+  
     if (currentSection === sections.length - 1) {
       triggerConfetti()
     }
-
-    // Reset card state when changing sections
-    setIsCardOpen(false)
-
+  
+    // Reset card state only if not in card section
+    if (currentSection !== 3) {
+      setIsCardOpen(false)
+    }
+  
     // Reset slideshow to first image when navigating to slideshow section
     if (currentSection === 4) {
       setCurrentSlide(0)
       setSlideshowPlaying(true)
     }
   }, [currentSection, sections.length])
-
+  
+  const toggleCard = () => {
+    setIsCardOpen(!isCardOpen)
+    if (!isCardOpen) {
+      // Trigger mini confetti when card opens
+      const defaults = { startVelocity: 15, spread: 360, ticks: 50, zIndex: 0 }
+      confetti({
+        ...defaults,
+        particleCount: 30,
+        origin: { x: 0.5, y: 0.6 },
+      })
+    }
+  }
   const triggerConfetti = () => {
     const duration = 3 * 1000
     const animationEnd = Date.now() + duration
-    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 }
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 }
 
     function randomInRange(min: number, max: number) {
       return Math.random() * (max - min) + min
@@ -217,19 +384,6 @@ export default function BirthdayPage() {
     }
 
     setIsPlaying(!isPlaying)
-  }
-
-  const toggleCard = () => {
-    setIsCardOpen(!isCardOpen)
-    if (!isCardOpen) {
-      // Trigger mini confetti when card opens
-      const defaults = { startVelocity: 15, spread: 360, ticks: 50, zIndex: 0 }
-      confetti({
-        ...defaults,
-        particleCount: 30,
-        origin: { x: 0.5, y: 0.6 },
-      })
-    }
   }
 
   const nextSlide = useCallback(() => {
@@ -300,7 +454,7 @@ export default function BirthdayPage() {
       </div>
 
       {/* Main content */}
-      <div className="w-full max-w-4xl min-h-screen flex items-center justify-center px-6">
+      <div className="w-full max-w-6xl min-h-screen flex items-center justify-center px-6">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSection}
@@ -310,21 +464,33 @@ export default function BirthdayPage() {
             transition={{ duration: 0.5 }}
             className="bg-white/80 backdrop-blur-md rounded-2xl shadow-2xl p-8 md:p-12 border border-pink-200 w-full max-w-2xl"
           >
-            {currentSection === 1 && (
-              <div className="grid grid-cols-2 gap-4 mb-8">
+            {currentSection === 0 && (
+              <div className="flex flex-col items-center gap-4 mb-2 ">
                 <Image
-                  src="/placeholder.svg?height=200&width=200"
+                  src="/memories/home.jpg"
+                  width={350}
+                  height={300}
+                  alt="Foto Keren gw"
+                  className="rounded-xl object-cover border-4 border-pink-200 shadow-lg"
+                />
+              </div>
+            )}
+
+            {currentSection === 1 && (
+              <div className="grid grid-cols-2 gap-4 mb-8 text-justify">
+                <Image
+                  src="/memories/IMG-20250501-WA0009.jpg?height=200&width=200"
                   width={200}
                   height={200}
                   alt="Our memory"
                   className="rounded-lg object-cover border-2 border-pink-200 shadow-md transform rotate-[-3deg]"
                 />
                 <Image
-                  src="/placeholder.svg?height=200&width=200"
+                  src="/memories/IMG-20250501-WA0010.jpg?height=200&width=200"
                   width={200}
                   height={200}
                   alt="Our memory"
-                  className="rounded-lg object-cover border-2 border-pink-200 shadow-md transform rotate-[3deg]"
+                  className="rounded-lg object-cover md:ml-10 border-2 border-pink-200 shadow-md transform rotate-[3deg]"
                 />
               </div>
             )}
@@ -336,7 +502,7 @@ export default function BirthdayPage() {
                 transition={{ staggerChildren: 0.1, delayChildren: 0.3 }}
                 className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8"
               >
-                {[...Array(6)].map((_, i) => (
+                {memoryPhotos.map((memory, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, y: 20 }}
@@ -346,23 +512,14 @@ export default function BirthdayPage() {
                   >
                     <div className="absolute inset-0 bg-gradient-to-t from-rose-500/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-3 z-10">
                       <p className="text-white text-sm font-medium text-center">
-                        {
-                          [
-                            "Our first date",
-                            "Summer vacation",
-                            "Your birthday last year",
-                            "That perfect sunset",
-                            "When we laughed for hours",
-                            "The day I knew",
-                          ][i]
-                        }
+                        {memory.title}
                       </p>
                     </div>
                     <Image
-                      src={`/placeholder.svg?height=200&width=200&text=Memory+${i + 1}`}
+                      src={memory.image}
                       width={200}
                       height={200}
-                      alt={`Memory ${i + 1}`}
+                      alt={memory.title}
                       className="w-full h-32 md:h-40 object-cover rounded-lg border-2 border-pink-200 shadow-md transform transition-transform duration-300 group-hover:scale-105"
                     />
                   </motion.div>
@@ -370,89 +527,81 @@ export default function BirthdayPage() {
               </motion.div>
             )}
 
-            {currentSection === 3 && (
-              <div className="flex justify-center items-center mb-8">
-                <div className="perspective-1000 w-full max-w-md">
-                  <motion.div
-                    className="relative w-full cursor-pointer"
-                    animate={{ rotateY: isCardOpen ? 180 : 0 }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                    onClick={toggleCard}
-                    style={{ transformStyle: "preserve-3d" }}
-                  >
-                    {/* Card Front */}
-                    <motion.div
-                      className={`absolute inset-0 backface-hidden rounded-xl overflow-hidden border-4 border-pink-300 shadow-xl ${isCardOpen ? "pointer-events-none" : ""}`}
-                      style={{ backfaceVisibility: "hidden" }}
-                    >
-                      <div className="bg-gradient-to-br from-rose-300 to-pink-500 h-full w-full p-6 flex flex-col items-center justify-center">
-                        <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20">
-                          {[...Array(15)].map((_, i) => (
-                            <Heart
-                              key={i}
-                              className="absolute text-white"
-                              style={{
-                                top: `${Math.random() * 100}%`,
-                                left: `${Math.random() * 100}%`,
-                                fontSize: `${Math.random() * 2 + 1}rem`,
-                                transform: `rotate(${Math.random() * 360}deg)`,
-                              }}
-                              size={Math.random() * 20 + 10}
-                            />
-                          ))}
-                        </div>
-                        <Gift className="w-16 h-16 text-white mb-4" />
-                        <h3 className="text-2xl font-bold text-white text-center mb-2">Happy Birthday!</h3>
-                        <p className="text-white text-center">Click to open your special card</p>
-                        <div className="absolute bottom-4 right-4">
-                          <Heart className="w-6 h-6 text-white animate-pulse" fill="white" />
-                        </div>
-                      </div>
-                    </motion.div>
 
-                    {/* Card Inside */}
-                    <motion.div
-                      className="absolute inset-0 backface-hidden rounded-xl overflow-hidden border-4 border-pink-300 shadow-xl bg-white"
-                      style={{
-                        backfaceVisibility: "hidden",
-                        transform: "rotateY(180deg)",
-                      }}
-                    >
-                      <div className="h-full w-full p-6 flex flex-col items-center justify-center relative">
-                        <div className="absolute top-0 left-0 w-full h-12 bg-pink-100 flex items-center justify-center">
-                          <div className="w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-pink-300 via-pink-200 to-pink-100"></div>
-                        </div>
+{currentSection === 3 && (
+  <div className="flex justify-center items-center mb-8">
+    <div className="relative w-full cursor-pointer" onClick={toggleCard}>
+      <motion.div
+        key={isCardOpen ? "inside" : "front"} // penting biar motion animate dijalankan tiap ganti
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        transition={{ duration: 0.6 }}
+        className="relative w-full rounded-xl overflow-hidden border-4 border-pink-300 shadow-xl"
+      >
+        {!isCardOpen ? (
+          // Tampilan depan kartu
+          <div className="bg-gradient-to-br from-rose-300 to-pink-500 h-full w-full p-6 flex flex-col items-center justify-center relative">
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20">
+              {[...Array(15)].map((_, i) => (
+                <Heart
+                  key={i}
+                  className="absolute text-white"
+                  style={{
+                    top: `${Math.random() * 100}%`,
+                    left: `${Math.random() * 100}%`,
+                    fontSize: `${Math.random() * 2 + 1}rem`,
+                    transform: `rotate(${Math.random() * 360}deg)`,
+                  }}
+                />
+              ))}
+            </div>
+            <Gift className="w-16 h-16 text-white mb-4" />
+            <h3 className="text-2xl font-bold text-white text-center mb-2">Happy Birthday!</h3>
+            <p className="text-white text-center">Click to open your special card</p>
+            <div className="absolute bottom-4 right-4">
+              <Heart className="w-6 h-6 text-white animate-pulse" fill="white" />
+            </div>
+          </div>
+        ) : (
+          // Tampilan dalam kartu
+          <div className="bg-white h-full w-full p-6 flex flex-col items-center justify-center relative">
+            <div className="absolute top-0 left-0 w-full h-12 bg-pink-100">
+              <div className="w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-pink-300 via-pink-200 to-pink-100" />
+            </div>
 
-                        <div className="z-10 text-center px-4 py-8">
-                          <h3 className="text-2xl font-bold text-rose-600 mb-4">To My Sweetheart</h3>
-                          <p className="text-rose-800 mb-6 leading-relaxed">
-                            Another year of loving you has been the greatest gift. Your smile, your laugh, your heart -
-                            everything about you makes my life complete.
-                          </p>
-                          <p className="text-rose-800 mb-6 leading-relaxed">
-                            May this birthday bring you as much joy as you bring to me every single day.
-                          </p>
-                          <p className="text-rose-600 font-bold">Forever Yours,</p>
-                          <p className="italic text-rose-500">With all my love</p>
-                        </div>
+            <div className="z-10 text-center px-4 py-8">
+              <h3 className="text-xl font-bold text-rose-600 mb-1">Untukmu yang Teristimewa</h3>
+              <h4 className="text-2xl font-bold text-rose-600 mb-4">Riska Anggraini</h4>
+              <p className="text-rose-800 mb-6 leading-relaxed">
+                Setiap detik yang kita lewati bersama adalah anugerah terindah. Cintamu, perhatianmu, dan cara kau membuat setiap hari menjadi lebih berarti, semuanya adalah keajaiban yang aku syukuri setiap saat. Aku tak pernah merasa seutuhnya hidup hingga aku memilikimu di sisi.
+              </p>
+              <p className="text-rose-800 mb-6 leading-relaxed">
+                Di hari ulang tahunmu ini, izinkan aku mengucapkan betapa besar rasa terima kasihku atas segala yang telah kau beri. Semoga kebahagiaanmu selalu mekar seperti bunga yang tak pernah layu, dan cinta kita semakin kokoh, tak tergoyahkan oleh waktu.
+              </p>
+              <p className="text-rose-600 font-bold">Pria dengan penuh cinta,</p>
+              <p className="italic text-rose-500">Faizal Muhamad Iqbal</p>
+            </div>
 
-                        <div className="absolute bottom-0 left-0 w-full h-12 bg-pink-100">
-                          <div className="w-full h-full bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-pink-300 via-pink-200 to-pink-100"></div>
-                        </div>
 
-                        {/* Decorative elements */}
-                        <div className="absolute top-3 right-3">
-                          <Heart className="w-5 h-5 text-rose-400" fill="currentColor" />
-                        </div>
-                        <div className="absolute bottom-3 left-3">
-                          <Heart className="w-5 h-5 text-rose-400" fill="currentColor" />
-                        </div>
-                      </div>
-                    </motion.div>
-                  </motion.div>
-                </div>
-              </div>
-            )}
+            <div className="absolute bottom-0 left-0 w-full h-12 bg-pink-100">
+              <div className="w-full h-full bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-pink-300 via-pink-200 to-pink-100" />
+            </div>
+
+            {/* Decorative hearts */}
+            <div className="absolute top-3 right-3">
+              <Heart className="w-5 h-5 text-rose-400" fill="currentColor" />
+            </div>
+            <div className="absolute bottom-3 left-3">
+              <Heart className="w-5 h-5 text-rose-400" fill="currentColor" />
+            </div>
+          </div>
+        )}
+      </motion.div>
+    </div>
+  </div>
+)}
+
 
             {currentSection === 4 && (
               <div className="mb-8">

@@ -1,182 +1,164 @@
 "use client"
 
-import { useRef, useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber"
-import { OrbitControls, MeshDistortMaterial, Environment, ContactShadows } from "@react-three/drei"
-import type { Mesh, Group } from "three"
-import { useSpring, animated, config } from "@react-spring/three"
+import { OrbitControls, Environment, ContactShadows, Text } from "@react-three/drei"
 import * as THREE from "three"
 
-// Heart model component
-function Heart({ position = [0, 0, 0], ...props }) {
-  const group = useRef<Group>(null!)
-  const mesh = useRef<Mesh>(null!)
-  const [hovered, setHovered] = useState(false)
-  const [clicked, setClicked] = useState(false)
-  const [beatIntensity, setBeatIntensity] = useState(0.5)
+function GiftBox() {
+  const boxRef = useRef<THREE.Mesh>(null)
+  const lidRef = useRef<THREE.Mesh>(null)
+  const [isOpened, setIsOpened] = useState(false)
 
-  // Animation for heartbeat
-  const { scale } = useSpring({
-    scale: clicked ? [1.2, 1.2, 1.2] : hovered ? [1.1, 1.1, 1.1] : [1, 1, 1],
-    config: config.wobbly,
+  useFrame(({ clock }) => {
+    const t = clock.getElapsedTime()
+
+    // Rotate the box to give it a subtle animation
+    if (boxRef.current) {
+      boxRef.current.rotation.y = Math.sin(t * 0.5) * 0.2
+    }
+
+    // Animate the lid opening
+    if (lidRef.current) {
+      // Lid moves upwards with a sinusoidal motion
+      lidRef.current.position.x = 0.3 + Math.sin(t * 3) * 0.3
+
+      // Open the box when lid is high enough
+      if (lidRef.current.position.y > 1.0 && !isOpened) {
+        setIsOpened(true) // Trigger box open
+      }
+    }
   })
 
-  // Animation for continuous beating
-  useFrame((state) => {
-    if (!group.current) return
-
-    // Base heartbeat animation
-    const t = state.clock.getElapsedTime()
-    const beatSpeed = clicked ? 3 : hovered ? 2 : 1
-    const beatStrength = clicked ? 0.15 : hovered ? 0.1 : 0.05
-
-    // Simulate heartbeat with two pulses
-    const beat = Math.sin(t * beatSpeed * 2) * beatStrength * beatIntensity
-    const baseBeat = 1 + Math.max(0, beat)
-
-    group.current.scale.x = baseBeat
-    group.current.scale.y = baseBeat
-    group.current.scale.z = baseBeat
-
-    // Gentle rotation
-    group.current.rotation.y = Math.sin(t * 0.5) * 0.2
-    group.current.rotation.z = Math.cos(t * 0.3) * 0.1
-  })
-
-  // Create a heart shape using geometry
   return (
-    <animated.group
-      ref={group}
-      position={position}
-      scale={scale as any}
-      onPointerOver={() => setHovered(true)}
-      onPointerOut={() => setHovered(false)}
-      onClick={() => {
-        setClicked(!clicked)
-        setBeatIntensity(clicked ? 0.5 : 1)
-      }}
-      {...props}
-    >
-      <mesh ref={mesh} castShadow receiveShadow>
-        {/* Heart shape using a sphere with distortion */}
-        <sphereGeometry args={[1, 32, 32]} />
-        <MeshDistortMaterial
-          color={clicked ? "#ff1a5e" : hovered ? "#ff4d79" : "#ff6b8e"}
-          speed={clicked ? 5 : hovered ? 3 : 2}
-          distort={clicked ? 0.6 : hovered ? 0.4 : 0.3}
-          radius={1}
-          factor={clicked ? 3 : hovered ? 2 : 1}
-          metalness={0.5}
-          roughness={0.4}
-          emissive={clicked ? "#ff1a5e" : hovered ? "#ff4d79" : "#ff6b8e"}
-          emissiveIntensity={clicked ? 0.5 : hovered ? 0.3 : 0.2}
-        />
+    <group position={[0, -0.5, 0]}>
+      {/* Box */}
+      <mesh ref={boxRef} castShadow receiveShadow>
+        <boxGeometry args={[1.2, 1.2, 1.2]} />
+        <meshStandardMaterial color="#ffc0cb" />
       </mesh>
 
-      {/* Create the heart shape indentation */}
-      <mesh position={[0, 0.8, 0]} castShadow>
-        <sphereGeometry args={[0.8, 32, 32]} />
-        <MeshDistortMaterial
-          color={clicked ? "#ff1a5e" : hovered ? "#ff4d79" : "#ff6b8e"}
-          speed={clicked ? 5 : hovered ? 3 : 2}
-          distort={clicked ? 0.6 : hovered ? 0.4 : 0.3}
-          factor={clicked ? 3 : hovered ? 2 : 1}
-          metalness={0.5}
-          roughness={0.4}
-          emissive={clicked ? "#ff1a5e" : hovered ? "#ff4d79" : "#ff6b8e"}
-          emissiveIntensity={clicked ? 0.5 : hovered ? 0.3 : 0.2}
-        />
+      {/* Lid */}
+      <mesh ref={lidRef} position={[0, 0.7, 0]} castShadow receiveShadow>
+        <boxGeometry args={[1.25, 0.2, 1.25]} />
+        <meshStandardMaterial color="#ff69b4" />
       </mesh>
-
-      {/* Create the heart shape indentation */}
-      <mesh position={[0, -0.8, 0]} castShadow>
-        <coneGeometry args={[1, 1.5, 32]} />
-        <MeshDistortMaterial
-          color={clicked ? "#ff1a5e" : hovered ? "#ff4d79" : "#ff6b8e"}
-          speed={clicked ? 5 : hovered ? 3 : 2}
-          distort={clicked ? 0.6 : hovered ? 0.4 : 0.3}
-          factor={clicked ? 3 : hovered ? 2 : 1}
-          metalness={0.5}
-          roughness={0.4}
-          emissive={clicked ? "#ff1a5e" : hovered ? "#ff4d79" : "#ff6b8e"}
-          emissiveIntensity={clicked ? 0.5 : hovered ? 0.3 : 0.2}
-        />
-      </mesh>
-    </animated.group>
+    </group>
   )
 }
 
-// Simplified particles system using instanced meshes
-function Particles({ count = 20 }) {
+
+function Balloons({ count = 10, isOpened }: { count: number, isOpened: boolean }) {
   const mesh = useRef<THREE.InstancedMesh>(null!)
   const dummy = useRef(new THREE.Object3D())
 
-  // Set up the instanced mesh
   useEffect(() => {
-    if (!mesh.current) return
-
-    // Position the particles
     for (let i = 0; i < count; i++) {
-      dummy.current.position.set((Math.random() - 0.5) * 5, (Math.random() - 0.5) * 5, (Math.random() - 0.5) * 5)
-
+      dummy.current.position.set(
+        (Math.random() - 0.5) * 0.5, // Horizontal spread
+        Math.random() * 0.5 + 0.5,   // Vertical starting point (inside the box)
+        (Math.random() - 0.5) * 0.5  // Depth spread
+      )
+      dummy.current.scale.set(0.3, 0.3, 0.3) // Membesarkan ukuran balon
       dummy.current.updateMatrix()
       mesh.current.setMatrixAt(i, dummy.current.matrix)
     }
-
     mesh.current.instanceMatrix.needsUpdate = true
   }, [count])
 
-  // Animate the particles
   useFrame(({ clock }) => {
-    if (!mesh.current) return
-
-    const time = clock.getElapsedTime()
-
+    const t = clock.getElapsedTime()
     for (let i = 0; i < count; i++) {
-      // Get the current position
       mesh.current.getMatrixAt(i, dummy.current.matrix)
       dummy.current.position.setFromMatrixPosition(dummy.current.matrix)
 
-      // Animate position with sine waves
-      const initialX = (i % 5) - 2.5
-      const initialY = Math.floor(i / 5) - 2
-      const initialZ = Math.sin(i) * 2
+      // Animasi balon naik
+      if (isOpened) {
+        dummy.current.position.y += 0.02 + Math.sin(t + i) * 0.005 // Balon lebih cepat naik saat kotak terbuka
+      } else {
+        dummy.current.position.y += 0.01 + Math.sin(t + i) * 0.002 // Balon lebih lambat sebelum kotak terbuka
+      }
+      
+      if (dummy.current.position.y > 3) dummy.current.position.y = 0.5 // Reset setelah naik tinggi
 
-      dummy.current.position.x = initialX + Math.sin(time * 0.5 + i) * 0.1
-      dummy.current.position.y = initialY + Math.cos(time * 0.5 + i) * 0.1
-      dummy.current.position.z = initialZ + Math.sin(time * 0.3 + i) * 0.1
-
-      // Update the matrix
       dummy.current.updateMatrix()
       mesh.current.setMatrixAt(i, dummy.current.matrix)
     }
-
     mesh.current.instanceMatrix.needsUpdate = true
   })
 
   return (
-    <instancedMesh ref={mesh} args={[undefined, undefined, count]} castShadow>
-      <sphereGeometry args={[0.05, 8, 8]} />
-      <meshBasicMaterial color="#ff6b8e" transparent opacity={0.8} />
+    <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
+      <sphereGeometry args={[0.2, 16, 16]} /> {/* Membesarkan diameter bola */}
+      <meshStandardMaterial color="#ff6347" />
     </instancedMesh>
   )
 }
 
-// Scene setup
-export default function HeartBeat3D() {
+function Confetti({ count = 50 }) {
+  const mesh = useRef<THREE.InstancedMesh>(null!)
+  const dummy = useRef(new THREE.Object3D())
+
+  useEffect(() => {
+    for (let i = 0; i < count; i++) {
+      dummy.current.position.set(
+        (Math.random() - 0.5) * 5,
+        Math.random() * 3,
+        (Math.random() - 0.5) * 5
+      )
+      dummy.current.updateMatrix()
+      mesh.current.setMatrixAt(i, dummy.current.matrix)
+    }
+    mesh.current.instanceMatrix.needsUpdate = true
+  }, [count])
+
+  useFrame(({ clock }) => {
+    const t = clock.getElapsedTime()
+    for (let i = 0; i < count; i++) {
+      mesh.current.getMatrixAt(i, dummy.current.matrix)
+      dummy.current.position.setFromMatrixPosition(dummy.current.matrix)
+      dummy.current.position.y -= 0.01 + Math.sin(t + i) * 0.002
+      if (dummy.current.position.y < -1.5) dummy.current.position.y = 3
+      dummy.current.updateMatrix()
+      mesh.current.setMatrixAt(i, dummy.current.matrix)
+    }
+    mesh.current.instanceMatrix.needsUpdate = true
+  })
+
+  return (
+    <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
+      <boxGeometry args={[0.05, 0.05, 0.05]} />
+      <meshStandardMaterial color="#ff69b4" />
+    </instancedMesh>
+  )
+}
+
+export default function BirthdaySurprise3D() {
+  const [isOpened, setIsOpened] = useState(false)
+
   return (
     <Canvas shadows camera={{ position: [0, 0, 5], fov: 50 }}>
-      <color attach="background" args={["#fee5eb"]} />
+      <color attach="background" args={["#fff0f5"]} />
       <ambientLight intensity={0.5} />
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
-      <pointLight position={[-10, -10, -10]} intensity={0.5} />
+      <spotLight position={[5, 10, 5]} angle={0.2} penumbra={1} castShadow intensity={1.5} />
 
-      <Heart position={[0, 0, 0]} />
-      <Particles count={20} />
+      <GiftBox />
+      <Balloons count={20} isOpened={isOpened} /> {/* Balon bergerak keluar saat kotak terbuka */}
+      <Confetti />
+
+      <Text
+        position={[0, 1.8, 0]}
+        fontSize={0.3}
+        color="#ff1493"
+        anchorX="center"
+        anchorY="middle"
+      >
+        Selamat Ulang Tahun Sayang! 💖
+      </Text>
 
       <Environment preset="sunset" />
-      <ContactShadows position={[0, -1.5, 0]} opacity={0.4} scale={10} blur={2} far={5} />
-      <OrbitControls enablePan={false} enableZoom={false} minPolarAngle={Math.PI / 3} maxPolarAngle={Math.PI / 1.5} />
+      <ContactShadows position={[0, -1.5, 0]} opacity={0.25} scale={10} blur={2} far={5} />
+      <OrbitControls enablePan={false} enableZoom={false} />
     </Canvas>
   )
 }

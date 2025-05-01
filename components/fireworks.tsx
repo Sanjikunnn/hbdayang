@@ -150,26 +150,32 @@ export default function Fireworks({ active = true }: { active?: boolean }) {
       })
     }
 
-    const explodeFirework = (firework: Firework) => {
-      // Create explosion particles
-      const particleCount = 80 + Math.floor(Math.random() * 40)
+const explodeFirework = (firework: Firework) => {
+  const particleCount = 100 // Banyaknya titik dalam bentuk hati
 
-      for (let i = 0; i < particleCount; i++) {
-        // Random angle and velocity
-        const angle = Math.random() * Math.PI * 2
-        const speed = Math.random() * 3 + 1
+  for (let i = 0; i < particleCount; i++) {
+    const t = (i / particleCount) * Math.PI * 2
 
-        firework.particles.push({
-          x: firework.x,
-          y: firework.y,
-          vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed,
-          alpha: 1,
-          color: Math.random() < 0.3 ? "#ffffff" : firework.color, // Some white sparks
-          size: Math.random() * 2 + 1,
-        })
-      }
-    }
+    // Rumus parametris untuk bentuk hati 💖
+    const x = 16 * Math.pow(Math.sin(t), 3)
+    const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t))
+
+    // Skala biar nggak terlalu gede
+    const scale = 2 + Math.random() * 0.5
+    const speed = Math.random() * 0.5 + 0.5
+
+    firework.particles.push({
+      x: firework.x,
+      y: firework.y,
+      vx: x * scale * speed * 0.1,
+      vy: y * scale * speed * 0.1,
+      alpha: 1,
+      color: Math.random() < 0.2 ? "#ffffff" : firework.color,
+      size: Math.random() * 2 + 1,
+    })
+  }
+}
+
 
     // Helper to convert hex to rgb
     const hexToRgb = (hex: string) => {
@@ -193,10 +199,20 @@ export default function Fireworks({ active = true }: { active?: boolean }) {
   }, [active, dimensions])
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none z-10"
-      style={{ background: "transparent" }}
-    />
+    <>
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full pointer-events-none z-10"
+        style={{ background: "transparent" }}
+      />
+      <div className="absolute top-1/4 w-full text-center z-20 animate-fade-in-up">
+        <h1 className="text-3xl md:text-5xl font-bold text-white drop-shadow-lg">
+          SELAMAT ULANG TAHUN<br />
+          <span className="text-rose-300">RISKA ANGGRAINI</span><br />
+          YANG KE 25 TAHUN
+        </h1>
+      </div>
+    </>
   )
+  
 }

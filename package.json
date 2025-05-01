@@ -41,6 +41,7 @@
     "@react-spring/three": "latest",
     "@react-three/drei": "latest",
     "@react-three/fiber": "latest",
+    "@react-three/p2": "^0.0.6",
     "autoprefixer": "^10.4.20",
     "canvas-confetti": "latest",
     "class-variance-authority": "^0.7.1",

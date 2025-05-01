@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata = {
   title: "Happy Birthday, My Love",
   description: "A special birthday celebration for the love of my life",
-    generator: 'v0.dev'
+    generator: 'Faizmuhiq'
 }
 
 export default function RootLayout({
