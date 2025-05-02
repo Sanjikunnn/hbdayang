@@ -190,30 +190,31 @@ export default function BirthdayPage() {
   
   const memoryPhotos = [
     {
-      title: "Our first date",
+      title: "Di Sini Semua Dimulai",
       image: "/memories/IMG-20250501-WA0008.jpg",
     },
     {
-      title: "Summer vacation",
+      title: "Langkah Kecil Menuju Bahagia",
       image: "/memories/IMG-20250501-WA0016.jpg",
     },
     {
-      title: "Your birthday last year",
+      title: "Waktu Tak Pernah Menghapusmu",
       image: "/memories/IMG-20250501-WA0015.jpg",
     },
     {
-      title: "That perfect sunset",
+      title: "Dalam Diam, Kita Menatap Senja",
       image: "/memories/IMG-20250501-WA0005.jpg",
     },
     {
-      title: "When we laughed for hours",
+      title: "Tertawa, Seolah Dunia Milik Berdua",
       image: "/memories/IMG-20250501-WA0022.jpg",
     },
     {
-      title: "The day I knew",
-      image: "/memories/IMG-20250501-WA0026.jpg",
+      title: "Aku Tahu, Kamu adalah Rumah",
+      image: "/memories/IMG-20250501-WA0020.jpg",
     },
   ];
+  
   
   const sections = [
     {
@@ -230,13 +231,13 @@ export default function BirthdayPage() {
     },
     {
       id: "photo-gallery",
-      title: "Foto, Tapi Penuh Rasa",
+      title: "Kisah Kasih Kita",
       content:
         "Foto mungkin diam, tapi perasaan yang tertangkap di dalamnya tetap hidup. Terima kasih sudah jadi bagian dari semua itu.",
     },
     {
       id: "digital-card",
-      title: "Sebuah Surat, Banyak Makna",
+      title: "Selembar Surat, Banyak Makna",
       content:
         "Sering kali, hal yang sederhana justru menyimpan ketulusan yang paling dalam. Bukalah kartu ini, karena ada sesuatu yang ingin kusampaikan—tulus, jujur, dan berasal dari hati",
     },
@@ -510,7 +511,7 @@ export default function BirthdayPage() {
                     transition={{ delay: i * 0.1 }}
                     className="group relative overflow-hidden rounded-lg"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-t from-rose-500/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-3 z-10">
+                    <div className="absolute inset-0 bg-gradient-to-t from-rose-500/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-1 z-10">
                       <p className="text-white text-sm font-medium text-center">
                         {memory.title}
                       </p>
